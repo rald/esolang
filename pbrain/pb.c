@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define TABSIZE 4
+
 #define MEM_MAX 30000
 #define STK_MAX 256
 #define PRC_MAX 256
-
-#define TABSIZE 4
 
 long slurp(char *fileName,char **buffer) {
 	FILE *fp;
