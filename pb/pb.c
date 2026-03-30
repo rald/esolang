@@ -110,8 +110,8 @@ int main(int argc,char *argv[]) {
 	while(cp<nc) {
 		c0=c[cp];
 		switch(c0) {
-			case '#': while(cp<nc-1 && c[cp]!='\n') cp++; break;
 			case '@': return m[mp]; break;
+			case '#': while(cp<nc-1 && c[cp]!='\n') cp++; break;
 			case '.': putchar(m[mp]); break;
 			case ',': fflush(stdout); m[mp]=(c1=getchar())==EOF?0:c1; break;
 			case '+': m[mp]++; break;
