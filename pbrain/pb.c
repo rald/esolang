@@ -37,7 +37,7 @@ long slurp(char *fileName,char **buffer) {
 }
 
 void getpos(char *c,long cp,long *ln,long *cl) {
-	int i=0;
+	long i=0;
 	*ln=1; *cl=0;
 	while(i<=cp) {
 		switch(c[i]) {
@@ -61,6 +61,7 @@ void check(char *c,long nc) {
 	pos_t ps[MAX];
 	int pp=MAX;
 	long ln,cl;
+	pos_t k;
 
 	i=0;
 	while(i<nc) {
@@ -72,7 +73,7 @@ void check(char *c,long nc) {
 			ps[pp].p=i;
 		} else if(j==')' || j==']') {
 			if(pp==MAX) { getpos(c,i,&ln,&cl); printf("\n%ld:%ld ERR: unmatched '%c'.\n",ln,cl,j); exit(-1); }
-			pos_t k=ps[pp++];
+			k=ps[pp++];
 			if	( (j==')' && k.c!='(') ||
 			   	  (j==']' && k.c!='[') ) {
 				getpos(c,k.p,&ln,&cl); printf("\n%ld:%ld ERR: unmatched '%c'.\n",ln,cl,k.c); exit(-1);
@@ -96,7 +97,7 @@ int main(int argc,char *argv[]) {
 	long nc=0,cp=0,mp=0,scp=0;
 	int c0,c1,d=0,sp=STK_MAX;
 	long ln,cl;
-	long i,j,k;
+	long i;
 
 	if(argc!=2) {
 		printf("syntax: bf filename\n");
