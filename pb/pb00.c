@@ -13,9 +13,8 @@ long p[PRC_MAX];
 long s[STK_MAX];
 
 long nc=0,cp=0,mp=0,scp=0;
-int c0,c1,d=0,sp=STK_MAX;
+int c0,c1,d=0,i,sp=STK_MAX;
 long ln,cl;
-long i,j,k;
 
 long slurp(char *fileName,char **buffer) {
 	FILE *fp;
@@ -48,7 +47,7 @@ long slurp(char *fileName,char **buffer) {
 
 void getpos(long cp) {
 	i=0;
-	ln=1; cl=0;
+	ln=1; cl=1;
 	while(i<=cp) {
 		switch(c[i]) {
 			case '\n': ln++; cl=0; break;
@@ -56,41 +55,6 @@ void getpos(long cp) {
 			default: cl++; break;
 		}
 		i++;
-	}
-}
-
-typedef struct {
-	char c;
-	long p;
-} pos_t;
-
-#define MAX 1000
-void check() {
-	pos_t ps[MAX];
-	int pp=MAX;
-
-	i=0;
-	while(i<nc) {
-		j=c[i];
-		if(j=='(' || j=='[') {
-			if(pp<=0) { getpos(i); printf("\n%ld:%ld ERR: unmatched '%c'.\n",ln,cl,(char)j); exit(-1); }
-			--pp;
-			ps[pp].c=j;
-			ps[pp].p=i;
-		} else if(j==')' || j==']') {
-			if(pp==MAX) { getpos(i); printf("\n%ld:%ld ERR: unmatched '%c'.\n",ln,cl,(char)j); exit(-1); }
-			pos_t k=ps[pp++];
-			if	( (j==')' && k.c!='(') ||
-			   	  (j==']' && k.c!='[') ) {
-				getpos(k.p); printf("\n%ld:%ld ERR: unmatched '%c'.\n",ln,cl,k.c); exit(-1);
-			}
-		}
-		i++;
-	}
-
-	if(pp<MAX) {
-		pos_t k=ps[pp++];
-		getpos(k.p); printf("\n%ld:%ld ERR: unmatched '%c'.\n",ln,cl,k.c); exit(-1);
 	}
 }
 
@@ -102,8 +66,6 @@ int main(int argc,char *argv[]) {
 	}
 
 	nc=slurp(argv[1],&c);
-
-	check();
 
 	for(i=0;i<PRC_MAX;i++) p[i]=-1;
 
@@ -118,7 +80,7 @@ int main(int argc,char *argv[]) {
 			case '<': mp--; if(cp<0) { getpos(cp); printf("\n%ld:%ld ERR: past memory min.\n",ln,cl); return -1; } break;
 			case '>': mp++; if(cp>=nc) { getpos(cp); printf("\n%ld:%ld ERR: past memory max.\n",ln,cl); return -1; } break;
 			case '[':
-				if(!m[mp]) {
+				if(m[mp]==0) {
 					scp=cp;
 					d=1;
 					while(d) {
