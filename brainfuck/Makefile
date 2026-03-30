@@ -1,5 +1,5 @@
 bf: bf.c
-	gcc bf.c -o bf -std=c89 -O2 -Wall -Wextra -pedantic
+	gcc bf.c -o bf -ansi -O2 -Wall -Wextra -pedantic
 
 clean:
 	rm bf
