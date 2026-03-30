@@ -4,8 +4,8 @@
 , read char from keyboard and store to current memory location
 + increase value of current memory
 - decrease value of current memory
-< move memory pointer to previous memory location
-> move memory pointer to next memory location
+< move memory pointer backward
+> move memory pointer forward
 [ if current memory value equal zero then jump after the matching ] else next
 ] jump to matching [
 ( start procedure number in value of current memory
