@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define TABSIZE 4
+#define TABSIZE 8
 
 #define MEM_MAX 30000
 #define STK_MAX 256
