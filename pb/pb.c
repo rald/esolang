@@ -111,6 +111,7 @@ int main(int argc,char *argv[]) {
 		c0=c[cp];
 		switch(c0) {
 			case '#': while(cp<nc-1 && c[cp]!='\n') cp++; break;
+			case '@': return m[mp]; break;
 			case '.': putchar(m[mp]); break;
 			case ',': fflush(stdout); m[mp]=(c1=getchar())==EOF?0:c1; break;
 			case '+': m[mp]++; break;
@@ -173,6 +174,6 @@ int main(int argc,char *argv[]) {
 
 	free(c);
 
-  return 0;
+	return m[mp];
 }
 
