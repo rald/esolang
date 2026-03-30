@@ -7,6 +7,6 @@
 	[-]:																# call procedure 0
 )
 
-[-]+++[>		# do 3 times
-	[-]+:			# call procedure 1
-<-]					# loop
+[-]+++[>															# do 3 times
+	[-]+:																# 	call procedure 1
+<-]																		# loop
