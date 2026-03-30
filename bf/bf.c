@@ -40,7 +40,7 @@ int main(int argc,char *argv[]) {
 	char *c=NULL;
 
 	long nc=0,cp=0,mp=0;
-	int c0,c1,d=0,i;
+	int c0,c1,d=0;
 
 	if(argc!=2) {
 		printf("syntax: bf filename\n");
